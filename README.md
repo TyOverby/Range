@@ -33,7 +33,7 @@ an inclusive modifier.
     
 ## Using the Range.infinite constructor ##
 
-Creating infinite ranges can also be handy.  The Range.infinite constructor does 
+Creating infinite ranges can also be handy.  The `Range.infinite` constructor does 
 this for you. 
 
 It takes as optional parameters start and increment numbers. 
@@ -54,7 +54,7 @@ Providing a negative step will make it trend towards negative infinity.
     
 ## Using py_range() ##
 
-Because the idea for range() came from python, py_range emulates the behavior of 
+Because the idea for Range Util came from python, `py_range` emulates the behavior of 
 python's xrange() function.  
 
     > py_range(5).toList();

@@ -1,4 +1,7 @@
 name: Range
-description: A simple Range iterator
-dependencies:
+version: 0.0.1
+description: A simple range iterator
+author: Ty Overby <ty@pre-alpha.com>
+homepage: https://github.com/TyOverby/Range
+dev_dependencies:
   unittest: any

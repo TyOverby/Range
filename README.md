@@ -8,9 +8,9 @@ There are a few ways to use Range Utils.
 ## A NOTE ABOUT THESE EXAMPLES ##
 
 In the examples below, I use `.toList()` and `.take(...)` to force the Range iterable to 
-fully compute.  In practice you should almost never use these functions while using anything 
-from range utils.  Always just use the result of any range function or constructor without 
-converting it to a list or something.
+force computation and actually print something interesting.  In practice you should 
+almost never use these functions while using anything from range utils.  Always just 
+use the result of any range function or constructor without converting it to a list.
 
 ## Using the Range constructor ##
 

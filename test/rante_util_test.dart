@@ -1,5 +1,5 @@
 import 'package:unittest/unittest.dart';
-import '../lib/range.dart';
+import '../lib/range_util.dart';
 
 void main() {
   group("Finite range | positive increment | integer values", () {

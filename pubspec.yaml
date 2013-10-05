@@ -1,0 +1,4 @@
+name: Range
+description: A simple Range iterator
+dependencies:
+  unittest: any

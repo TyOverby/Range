@@ -113,6 +113,38 @@ Range py_range(num a, [num b, num c]){
   }
 }
 
+/**
+ * A quick way to name parameters given sane defaults.
+ * 
+ * [start]: defaults to 0.
+ * [end]: defaults to infinity or negative infinity depending on step.
+ * [step]: defaults to -1 or 1 depending on if start or end is larger.
+ * [inc]: defaults to false.
+ */
 Range range({num start, num end, num step, bool inc}) {
+  if(start == null) {
+    start = 0;
+  }
+  if(end == null) {
+    if(step == null){
+      end = double.INFINITY;
+    } else {
+      if(step > 0) {
+        end = double.INFINITY;
+      } else {
+        end = double.NEGATIVE_INFINITY;
+      }
+    }    
+  }
+  if(step == null) {
+    if(end > start) {
+      step = 1;
+    } else {
+      step = -1;
+    }
+  }
+  if(inc == null) {
+    inc = false;
+  }
   return new Range(start, end, step, inc);
 }

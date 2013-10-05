@@ -34,6 +34,7 @@ class Range extends Iterable<num> with IterableMixin<num> {
   num _start;
   num _end;
   num _interval;
+  bool _inclusive;
 
 /**
   * The standard way to create a [Range] with all possible options.
@@ -46,7 +47,7 @@ class Range extends Iterable<num> with IterableMixin<num> {
   *     new Range(5, 10, 2); // is similar in concept to
   *     [5, 7, 9]
 */
-  Range(this._start, this._end, [this._interval = 1]) {
+  Range(this._start, this._end, [this._interval = 1, this._inclusive = false]) {
     if((this._end < this._start && this._interval > 0) ||
        (this._end > this._start && this._interval < 0) ||
        (this._interval == 0 || this._interval == double.INFINITY || this._interval == double.NEGATIVE_INFINITY ||
@@ -62,19 +63,6 @@ class Range extends Iterable<num> with IterableMixin<num> {
     }
   }
 
-/**
-  * Creates a [Range] starting at 0 to an [end] point.
-  *
-  * Functionally equivalent to
-  *     new Range(0, end, interval);
-  *
-*/
-  factory Range.to(num end, [num interval]) {
-    if(interval == null) {
-      interval = (end > 0) ? 1 : -1;
-    }
-    return new Range(0, end, interval);
-  }
 
 /**
   * Creates an infinite [Range] that has a [start] point and an [interval] but no end.
@@ -102,7 +90,29 @@ class Range extends Iterable<num> with IterableMixin<num> {
   }
 
   Iterator<num> get iterator {
+    if(_inclusive){
+      return new RangeIterator(_start, _end + _interval, _interval);
+    }
     return new RangeIterator(_start, _end, _interval);
   }
 }
 
+/**
+ * A port of the python range() function with the distinction that 
+ * any impossible ranges (ie: 0 to 5 by -2) will error instead of providing 
+ * an empty iterator.
+ */
+Range py_range(num a, [num b, num c]){
+  // Only one number provided
+  if(b == null) {
+    return new Range(0, a, 1);
+  } else if (c == null) {
+    return new Range(a, b, 1);
+  } else {
+    return new Range(a, b, c);
+  }
+}
+
+Range range({num start, num end, num step, bool inc}) {
+  return new Range(start, end, step, inc);
+}

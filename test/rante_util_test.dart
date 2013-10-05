@@ -68,23 +68,6 @@ void main() {
     });
   });
 
-  group("Range.to", (){
-    test("5", () {
-      expect(new Range.to(5), orderedEquals([0,1,2,3,4]));
-    });
-    test("-5", (){
-      expect(new Range.to(-5), orderedEquals([0,-1,-2,-3,-4]));
-    });
-
-    test("5 by 2", (){
-      expect(new Range.to(5, 2), orderedEquals([0,2,4]));
-    });
-
-    test("-5 by -2", (){
-      expect(new Range.to(-5, -2), orderedEquals([0,-2,-4]));
-    });
-  });
-
   group("impossible range", (){
     test("a to b by negative", (){
       expect((){new Range(0, 10, -1);}, throwsA(new isInstanceOf<ArgumentError>()));
@@ -96,6 +79,29 @@ void main() {
       expect((){new Range(0, 10, 0);}, throwsA(new isInstanceOf<ArgumentError>()));
     });
   });
-
   //todo(tyoverby): Add tests for the remainder of illegal arguments
+  
+  group("py_range", (){
+    test("single number", (){
+      expect(py_range(5), orderedEquals([0,1,2,3,4]));
+    });
+    test("start and end", (){
+      expect(py_range(2,5), orderedEquals([2,3,4]));
+    });
+    test("start, end, inc", (){
+      expect(py_range(2,10,2), orderedEquals([2,4,6,8]));
+    });
+  });
+ 
+  group("inclusive ranges", (){
+    test("0 to 5", (){
+      expect(range(start: 0, end: 5, step: 1, inc: true), orderedEquals([0,1,2,3,4,5]));
+    });
+    test("-2 to 2", (){
+      expect(range(start: -2, end:2, step: 1, inc: true), orderedEquals([-2,-1,0,1,2]));
+    });
+    test("2 to -2", (){
+      expect(range(start: 2, end: -2, step: -1, inc: true), orderedEquals([2,1,0,-1,-2]));
+    });
+  });
 }

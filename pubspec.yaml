@@ -1,7 +1,7 @@
 name: range_util
-version: 0.0.1
-description: A simple range iterator
+version: 0.0.3
 author: Ty Overby <ty@pre-alpha.com>
+description: A simple range iterator
 homepage: https://github.com/TyOverby/Range
 dev_dependencies:
   unittest: any
